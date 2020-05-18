@@ -37,3 +37,6 @@ body {
 .creation{
   text-align: center;
 }
+.penContent{
+  border-style:dotted;
+}

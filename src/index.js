@@ -46,6 +46,38 @@ const animal3 = {
 const animalArray = [animal1, animal2, animal3]
 
 
+const penArray = [
+{
+  title:"cow",
+  animals:[]
+},
+{
+  title:"chicken",
+  animals:[]
+},
+{
+  title:"pig",
+  animals:[]
+},
+{
+  title:"sheep",
+  animals:[]
+}
+]
+
+
+const addToPen = () => {
+    animalArray.forEach(animal => {
+       penArray.find(pen => {
+         return pen.title === animal.species  
+        }).animals.push(animal)
+    })
+}
+
+addToPen()
+
+
+
 const handleSubmit = (e) => {
   e.preventDefault()
   console.log(e.target)
@@ -102,23 +134,33 @@ const renderAnimal = (animal) => {
           </div>`
 }
 
-const renderPen = (animalArray) => {
+const renderPen = (penArray) => {
 
   let str = '';
+  let currentPenStr = '';
 
-  animalArray.map(animal => {
-    str += renderAnimal(animal)
-
+  penArray.map(pen => {   
+    
+    pen.animals.map(animal => {
+    let penContent = ''
+      
+      
+      penContent += renderAnimal(animal)
+      currentPenStr = `<div class="penContent"> ${penContent} </div>`
+      
+    })
+    str += currentPenStr
   })
 
   return `<div class="animalPen">
-
-            <h3 class="penTitle" > ${animalArray[0].species} Pen</h3>
-
+            
             ${str}
   
          </div>`
 }
+
+
+
 
 
 const createAnimal = (species, avatar, name, gender, owner) => {
@@ -144,7 +186,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let form = document.getElementById("form")
 
 
-  barnyard.innerHTML += renderPen(animalArray)
+  barnyard.innerHTML += renderPen(penArray)
   form.innerHTML += renderAnimalForm()
 
 
