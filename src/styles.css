@@ -5,3 +5,25 @@ body {
 .instructions-list li {
   padding-bottom: 10px;
 }
+
+.animalImage {
+  height:100px;
+  width:100px;
+}
+
+.animal{
+  border-style: solid;
+  border-radius: 25px;
+  padding: 5px;
+  margin:5px;
+  width: 125px;
+  padding-left: 30px;
+}
+.animalPen{
+  border-style: double;
+  width:30%;
+  padding:5px;
+}
+.penTitle {
+  text-align: center;
+}

@@ -13,4 +13,64 @@
  *    I'd love to see the unique solutions you come up with!
  */
 
-import "./styles.css";
+// import "./styles.css";
+
+
+const animal1 = {
+  id: 1,
+  species : "cow",
+  avatar : "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwiseacre-gardens.com%2Fcows%2Fcow-redhead-face.jpg&f=1&nofb=1",
+  name: "Bessie",
+  gender: "female",
+  owner: "David"
+}
+
+const animal2 = {
+  id: 2,
+  species : "pig",
+  avatar : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffolly-farm.co.uk%2Fuploads%2F2018%2F04%2Fpig-810x1024.jpg&f=1&nofb=1",
+  name: "Pig",
+  gender: "female",
+  owner: "David"
+}
+
+const animalArray = [animal1, animal2]
+
+
+
+const renderAnimal = (animal) => {
+  return `<div class="animal" id=${animal.id}>
+            <h2>${ animal.name }</h2> 
+            
+            <h3>${animal.gender}</h3></br>
+
+            <img class="animalImage" src=${animal.avatar}/>
+
+            <p> Owner: ${animal.owner}</p>
+
+          </div>`
+}
+
+const renderPen = (animalArray) => {
+
+  let str = '';
+
+  animalArray.map(animal => {
+    str += renderAnimal(animal)
+  })
+
+  return `<div class="animalPen">
+
+            <h3 class="penTitle" > ${animalArray[0].species} Pen</h3>
+
+            ${str}
+  
+         </div>`
+}
+
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  let barnyard = document.getElementById("barnyard")
+  barnyard.innerHTML += renderPen(animalArray)
+});
