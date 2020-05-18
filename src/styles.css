@@ -1,0 +1,7 @@
+body {
+  font-family: sans-serif;
+}
+
+.instructions-list li {
+  padding-bottom: 10px;
+}
