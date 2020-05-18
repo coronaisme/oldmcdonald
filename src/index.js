@@ -33,8 +33,59 @@ const animal2 = {
   gender: "female",
   owner: "David"
 }
+const animal3 = {
+  id: 3,
+  species : "chicken",
+  avatar : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.justataste.com%2Fwp-content%2Fuploads%2F2014%2F09%2Froast-chicken-garlic-lemon-recipe.jpg&f=1&nofb=1",
+  name: "Chicken",
+  gender: "female",
+  owner: "David"
+}
 
-const animalArray = [animal1, animal2]
+
+const animalArray = [animal1, animal2, animal3]
+
+
+const handleSubmit = (e) => {
+  e.preventDefault()
+  console.log(e.target)
+}
+
+
+
+
+
+
+
+const renderAnimalForm = () => {
+
+
+
+  return `
+  <h5 class="creation">Create an Animal</h5>
+
+  <form class="animal-form" action=>
+
+  <label>Species</label>
+  <input type="text" name="species-input" id="speciesId"/>
+
+  <label>Avatar</label>
+  <input type="text" name="avatar-input" id="avatarId"/>
+
+  <label>Name</label>
+  <input type="text" name="name-input" id="nameId"/>
+
+  <label>Gender</label>
+  <input type="text" name="gender-input" id="genderId"/>
+
+  <label>Owner</label>
+  <input type="text" name="owner-input" id="ownerId"/>
+
+  <input type="submit" id="submit" />
+  
+  
+  </form>`
+}
 
 
 
@@ -57,6 +108,7 @@ const renderPen = (animalArray) => {
 
   animalArray.map(animal => {
     str += renderAnimal(animal)
+
   })
 
   return `<div class="animalPen">
@@ -69,8 +121,48 @@ const renderPen = (animalArray) => {
 }
 
 
+const createAnimal = (species, avatar, name, gender, owner) => {
+
+    
+    let nextId = animalArray[animalArray.length - 1].id + 1
+
+    return {
+      id:nextId,
+      species:species,
+      avatar:avatar,
+      name:name,
+      gender:gender,
+      owner:owner
+      
+    }
+}
+
+
 
 window.addEventListener('DOMContentLoaded', (event) => {
   let barnyard = document.getElementById("barnyard")
+  let form = document.getElementById("form")
+
+
   barnyard.innerHTML += renderPen(animalArray)
+  form.innerHTML += renderAnimalForm()
+
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    let speciesVal = document.getElementById("speciesId").value
+    let avatarVal = document.getElementById("avatarId").value
+    let nameVal = document.getElementById("nameId").value
+    let genderVal = document.getElementById("genderId").value
+    let ownerVal = document.getElementById("ownerId").value
+
+    let newAnimal = createAnimal(speciesVal, avatarVal, nameVal, genderVal, ownerVal)
+
+    animalArray.push(newAnimal)
+    barnyard.innerHTML = ""
+    barnyard.innerHTML += renderPen(animalArray)
+    console.log(animalArray, "array of animals")
+
+  })
+
 });
